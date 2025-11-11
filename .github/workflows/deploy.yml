@@ -1,0 +1,21 @@
+name: Deploy to CasaOS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to CasaOS folder
+        run: |
+          echo "🚀 Starting deploy..."
+          rm -rf /codewildan/codedocker/hefastore/*
+          cp -r ./* /codewildan/codedocker/hefastore/
+          echo "✅ Deployment selesai ke /codewildan/codedocker/hefastore"
